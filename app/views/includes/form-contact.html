@@ -1,0 +1,42 @@
+#{form @ContactFormController.saveContactForm(), id:'formContact'}
+	<input type="hidden" name="contactForm.id" value="${contactForm?.id}">
+	<div class="text">
+		<div class="text-fild">
+			<span>Nome:</span> 
+			#{field 'name' }
+				<input type="text" id="${field.name}" name="${field.name}" class="text" value="Seu nome aqui" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Seu nome aqui';}">
+			#{/field}
+		</div>
+		<div class="text-fild">
+			<span>E-mail:</span> 
+			#{field 'email' }
+				<input type="text" id="${field.name}" name="${field.name}" class="text" value="Seu e-mail aqui" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Seu e-mail aqui';}">
+			#{/field}
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="msg-fild">
+		<span>Assunto:</span> 
+		#{field 'subject' }
+			<input type="text" id="${field.name}" name="${field.name}" class="text" value="Assunto" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Assunto';}">
+		#{/field}
+	</div>
+	<div class="message-fild">
+		<span>Mensagem:</span>
+		#{field 'description' }
+			<textarea id="${field.name}" name="${field.name}"> </textarea>
+		#{/field}
+	</div>
+	<input type="submit" value="Enviar">
+#{/form} 
+#{ifErrors} 
+	#{errors}
+		<p style="color: red">* ${error}</p>
+	#{/errors} 
+#{/ifErrors}
+#{if flash.error || error}
+	<p style="color: red">${flash.error}</p>
+#{/if}
+#{if flash.success}
+	<p>${flash.success}</p>
+#{/if}

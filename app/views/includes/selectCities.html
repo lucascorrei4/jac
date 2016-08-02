@@ -1,0 +1,4 @@
+#{select id:'cityId', name:'registration.cityId', items:listCities, valueProperty:'id', labelProperty:'name'}
+	<option selected="${city != null ? 'selected' : ''}" value="${city != null ? city.id : ''}">${city != null ? city.name : 'Cidade'}</option>
+#{/select}
+

@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<table class="default">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Cidade</th>
+			<th>Data da inscrição</th>
+			<th>Situação</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list listEnrolled, as:'enrolled'}
+			<tr>
+				<td>${enrolled.getName()}</td>
+				<td>${enrolled.getCityState()}</td>
+				<td>${enrolled.getPostedAt().format("dd/MM/yyyy HH'h'mm")}</td>
+				<td>${enrolled.isActive() ? 'Confirmado' : 'Pendente'}</td>
+			</tr>
+		#{/list}
+	</tbody>
+</table>

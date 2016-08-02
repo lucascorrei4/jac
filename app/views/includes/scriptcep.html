@@ -1,0 +1,16 @@
+<script type="text/javascript">
+	 $(document).ready(function() {
+		var selectActionStates = #{jsAction @CEPController.getStatesByCountryId(':countryId') /};
+    	$('#stateId').load(
+    		selectActionStates({countryId: '1'})
+    	);
+		$('#stateId').change(function() {
+			var elementState = document.getElementById("stateId");
+			var stateIdValue = elementState.value;
+			var selectActionCities = #{jsAction @CEPController.getCitiesByCountryIdAndStateId(':stateId') /};
+	    	$('#cityId').load(
+	    		selectActionCities({stateId: stateIdValue})
+	    	);
+		});
+	});
+</script>

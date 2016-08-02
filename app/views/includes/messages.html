@@ -1,0 +1,17 @@
+<meta charset="utf-8">
+#{list listEnrolled, as:'msg'}
+	#{if msg.getMessage() != ''}
+		<table class="default">
+			<thead>
+				<tr>
+					<th>"${msg.getMessage()}"</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr>
+						<td style="float: right; font-size: 18px; margin: 0; padding:0"><b>${msg.getName()}</b>, ${msg.getCityState()}</td>
+					</tr>
+			</tbody>
+		</table>
+	#{/if}
+#{/list}

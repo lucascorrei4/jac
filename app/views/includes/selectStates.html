@@ -1,0 +1,3 @@
+#{select id:'stateId', name:'registration.stateId', items:listStates, valueProperty:'id', labelProperty:'name' }
+	<option selected="${state != null ? 'selected' : ''}" value="${state != null ? state.id : ''}">${ state != null ? state.name : 'Estado'}</option>
+#{/select}

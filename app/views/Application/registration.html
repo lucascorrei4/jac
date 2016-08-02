@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Inscrição - Acampamento JAC - X-MEN - O Fim está Próximo</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<!--[if lte IE 8]><script src="@{'public/stylesheets/ie/html5shiv.js'}"></script><![endif]-->
+<script src="@{'public/javascripts/jquery.min.js'}"></script>
+<script src="@{'public/javascripts/jquery.scrolly.min.js'}"></script>
+<script src="@{'public/javascripts/jquery.poptrox.min.js'}"></script>
+<script src="@{'public/javascripts/skel.min.js'}"></script>
+<script src="@{'public/javascripts/init.js'}"></script>
+<link rel="stylesheet" href="@{'public/stylesheets/skel.css'}" />
+<link rel="stylesheet" href="@{'public/stylesheets/style.css'}" />
+<!--[if lte IE 8]><link rel="stylesheet" href="@{'public/stylesheets/ie/v8.css'}" /><![endif]-->
+</head>
+<body bgcolor="black">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<article class="container box style3">
+<header>
+	<h3>Garanta a sua vaga</h3>
+</header>
+<a id="formError" name="formError"></a>
+#{ifErrors} 
+   	<h1>Oops...</h1>
+	#{errors}
+		<input class="text" type="hidden" id="error" value="${error}" />
+	#{/errors} 
+#{/ifErrors}
+#{if flash.success}
+	<p>${flash.success}</p>
+#{/if}
+#{if flash.error}
+   <p class="error">
+      &{flash.error}
+   </p>
+#{/if}
+#{form @saveRegistrationForm(), method:'POST'}
+	<div class="row">
+		<div class="6u">
+			<input class="text" type="text" name="registration.name" id="name" value="${flash['registration.name']}" placeholder="Nome" />
+			#{ifError 'registration.name'}
+			    <label class="error">#{error 'registration.name' /}</label>
+		    #{/ifError}
+		</div>
+		<div class="6u">
+			<input class="text" type="text" name="registration.lastName" id="email" value="${flash['registration.lastName']}" placeholder="Sobrenome" />
+		    <label class="error">#{error 'registration.lastName' /}</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="6u">
+			<input class="text" type="text" name="registration.email" id="birthdate" value="${flash['registration.email']}" placeholder="E-mail" />
+	        <label class="error">#{error 'registration.email' /}</label>
+		</div>
+		<div class="6u">
+			#{select id:'gender', name:'registration.gender', items:genderEnum, valueProperty:'id', labelProperty:'name', class:'select'}
+				<option value="Empty">Sexo</option>
+			#{/select}
+	        <label class="error">#{error 'registration.gender' /}</label>
+			<input type="hidden" name="registration.gender" value="" /> 
+		</div>
+	</div>
+	<div class="row">
+		<div class="6u">
+			<input class="text date" type="text" name="registration.birthdate" id="birthdate" value="${flash['registration.birthdate']}" placeholder="Data de nascimento"  />
+	        <label class="error">#{error 'registration.birthdate' /}</label>
+		</div>
+		<div class="6u">
+			<input class="text age" type="text" name="registration.age" id="age" value="${flash['registration.age']}" placeholder="Idade"  />
+		    <label class="error">#{error 'registration.age' /}</label>
+		</div>
+	</div>
+	<br>
+	<h3 style="text-align: center">Endereço e contato</h3>
+	<br>
+		<input id="countryId" type="hidden" name="registration.countryId" value="1">
+	<div class="row">
+		<div class="6u">
+			#{include 'includes/selectStates.html' /}
+			<label class="error">#{error 'registration.stateId' /}</label>
+		</div>
+		<div class="6u">
+			#{include 'includes/selectCities.html' /}
+			<label class="error">#{error 'registration.cityId' /}</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="12u">
+			<input class="text" type="text" name="registration.address" id="address" value="${flash['registration.address']}" placeholder="Endereço"  />
+			<label class="error">#{error 'registration.address' /}</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="6u">
+			<input class="text" type="text" name="registration.complement" id="complement" value="${flash['registration.complement']}" placeholder="Complemento"  />
+			<label class="error">#{error 'registration.complement' /}</label>
+		</div>
+		<div class="6u">
+			<input class="text cep" type="text" name="registration.cep" id="cep" value="${flash['registration.cep']}" placeholder="CEP"  />
+			<label class="error">#{error 'registration.cep' /}</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="6u">
+			<input class="text sp_celphones" type="text" name="registration.phone1" id="phone1" value="${flash['registration.phone1']}" placeholder="Celular" />
+			<label class="error">#{error 'registration.phone1' /}</label>
+		</div>
+		<div class="6u">
+			<input class="text sp_celphones" type="text" name="registration.phone2" id="phone2" value="${flash['registration.phone2']}" placeholder="Fone residencial/comercial"  />
+			<label class="error">#{error 'registration.phone2' /}</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="6u">
+			Frequenta alguma igreja? <input class="text" type="checkbox" name="registration.anyChurch" id="anyChurch" />
+			<label class="error">#{error 'registration.anyChurch' /}</label>
+		</div>
+		<div class="6u">
+			<input class="text" type="text" name="registration.church" id="church" value="${flash['registration.church']}" placeholder="Qual igreja?" />
+			<label class="error">#{error 'registration.church' /}</label>
+		</div>
+	</div>
+	<br>
+	<h3 style="text-align: center">Informações de saúde</h3>
+	<br>
+	<div class="row">
+		<div class="6u">
+			<input class="text" type="text" name="registration.allergy" id="allergy" placeholder="Possui alguma alergia? Qual?"/>
+		</div>
+		<div class="6u">
+			<input class="text" type="text" name="registration.medicine" id="church" placeholder="Toma algum medicamento? Qual?" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="6u">
+			<input class="text" type="checkbox" name="registration.asthma" id="asthma"  /> Eu tenho asma. 
+		</div>
+		<div class="6u">
+			<input class="text" type="checkbox" name="registration.sleepwalk" id="sleepwalk" /> Eu sou sonâmbulo. 
+		</div>
+	</div>
+	<div class="row">
+		<div class="6u">
+			<input class="text" type="checkbox" name="registration.highPressure" id="highPressure" /> Eu sofro de pressão alta. 
+		</div>
+		<div class="6u">
+			<input class="text" type="checkbox" name="registration.lowPressure" id="lowPressure" /> Eu sofro de pressão baixa. 
+		</div>
+	</div>
+	<div class="row">
+		<div class="6u">
+			<input class="text" type="checkbox" name="registration.diabetes" id="diabetes" /> Eu tenho diabetes. 
+		</div>
+		<div class="6u">
+			<input class="text" type="checkbox" name="registration.fainting" id="fainting" /> Tenho desmaios frequentes.
+		</div>
+	</div>
+	<div class="row">
+		<div class="6u">
+			<input class="text" type="checkbox" name="registration.headache" id="headache"  /> Possuo fortes dores de cabeça. 
+		</div>
+		<div class="6u">
+			<input class="text" type="checkbox" name="registration.swim" id="swim" /> Não sei nadar. 
+		</div>
+	</div>
+	<br>
+	<h3 style="text-align: center">Menores de idade</h3>
+	<br>
+	<div class="row">
+		<div class="6u">
+			<input class="text" type="text" name="registration.responsable" id="church" value="${flash['registration.responsable']}" placeholder="Nome do responsável" />
+			#{ifError 'registration.responsable'}
+			<label class="error">#{error 'registration.responsable' /}</label>
+			#{/ifError}
+		</div>
+		<div class="6u">
+			<input class="text" type="text" name="registration.responsableRG" id="church" value="${flash['registration.responsableRG']}" placeholder="RG do responsável" />
+			<label class="error">#{error 'registration.responsableRG' /}</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="6u">
+			<input class="text sp_celphones" type="text" name="registration.emergencyCall" id="church" value="${flash['registration.emergencyCall']}" placeholder="Fone para emergência 1" />
+			<label class="error">#{error 'registration.emergencyCall' /}</label>
+		</div>
+		<div class="6u">
+			<input class="text sp_celphones	" type="text" name="registration.emergencyCall2" id="church" value="${flash['registration.emergencyCall2']}" placeholder="Fone para emergência 2" />
+			<label class="error">#{error 'registration.emergencyCall2' /}</label>
+		</div>
+	</div>
+	<br>
+		<h3 style="text-align: center">Deixe uma breve mensagem aos acampantes</h3>
+	<br>
+	<div class="row">
+		<div class="12u">
+			<input class="text" type="text" name="registration.message" id="address" value="${flash['registration.message']}" placeholder="Mensagem" />
+			<label class="error">#{error 'registration.message' /}</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="12u">
+		<div style="text-align: center">
+			<input class="text" type="checkbox" name="registration.agreeTerm" id="agreeTerm" /> Li e estou de acordo com o regulamento.
+			<label class="error">#{error 'registration.agreeTerm' /}</label>
+		</div>
+		<br>
+		<ul class="actions">
+				<li><input type="submit" value="Inscrever-se" /></li>
+				<li><input type="reset" class="style3" value="Limpar" /></li>
+			</ul>
+		</div>
+	</div>
+	#{include 'includes/scriptcep.html' /}
+#{/form}
+</article>
+#{include 'includes/footer.html' /}
+<script type="text/javascript" src="@{'public/javascripts/jquery.mask.min.js'}"></script>
+<script type="text/javascript">
+  $(function() {
+    $('.age').mask('00');
+    $('.date').mask('00/00/0000');
+    $('.time').mask('00:00:00');
+    $('.date_time').mask('00/00/0000 00:00:00');
+    $('.cep').mask('00000-000');
+    $('.phone').mask('0000-0000');
+    $('.phone_with_ddd').mask('(00) 0000-0000');
+    $('.phone_us').mask('(000) 000-0000');
+    $('.mixed').mask('AAA 000-S0S');
+    $('.ip_address').mask('099.099.099.099');
+    $('.percent').mask('##0,00%', {reverse: true});
+    $('.clear-if-not-match').mask("00/00/0000", {clearIfNotMatch: true});
+    $('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
+    $('.fallback').mask("00r00r0000", {
+      translation: {
+        'r': {
+          pattern: /[\/]/, 
+          fallback: '/'
+        }, 
+        placeholder: "__/__/____"
+      }
+    });
+
+    $('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
+
+    $('.cep_with_callback').mask('00000-000', {onComplete: function(cep) {
+        console.log('Mask is done!:', cep);
+      },
+       onKeyPress: function(cep, event, currentField, options){
+        console.log('An key was pressed!:', cep, ' event: ', event, 'currentField: ', currentField.attr('class'), ' options: ', options);
+      },
+      onInvalid: function(val, e, field, invalid, options){
+        var error = invalid[0];
+        console.log ("Digit: ", error.v, " is invalid for the position: ", error.p, ". We expect something like: ", error.e);
+      }
+    });
+
+    $('.crazy_cep').mask('00000-000', {onKeyPress: function(cep, e, field, options){
+      var masks = ['00000-000', '0-00-00-00'];
+        mask = (cep.length>7) ? masks[1] : masks[0];
+      $('.crazy_cep').mask(mask, options);
+    }});
+
+    $('.cpf').mask('000.000.000-00', {reverse: true});
+    $('.money').mask('#.##0,00', {reverse: true});
+
+    var SPMaskBehavior = function (val) {
+      return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+    },
+    spOptions = {
+      onKeyPress: function(val, e, field, options) {
+          field.mask(SPMaskBehavior.apply({}, arguments), options);
+        }
+    };
+
+    $('.sp_celphones').mask(SPMaskBehavior, spOptions);
+
+    $(".bt-mask-it").click(function(){
+      $(".mask-on-div").mask("000.000.000-00");
+      $(".mask-on-div").fadeOut(500).fadeIn(500)
+    })
+
+    $('pre').each(function(i, e) {hljs.highlightBlock(e)});
+  });
+</script>
+<script type="text/javascript">
+  	var errorForm = document.getElementById("error");
+	window.onload=function(event) {
+		if (errorForm.value != '') {
+			window.location.hash = '#formError';
+		}
+	}
+</script>
+<script src="//instansive.com/widget/js/instansive.js"></script>
+</body>
+</html>

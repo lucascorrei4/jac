@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Sucesso - Acampamento JAC - X-MEN - O Fim está Próximo</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<!--[if lte IE 8]><script src="@{'public/stylesheets/ie/html5shiv.js'}"></script><![endif]-->
+<script src="@{'public/javascripts/jquery.min.js'}"></script>
+<script src="@{'public/javascripts/jquery.scrolly.min.js'}"></script>
+<script src="@{'public/javascripts/jquery.poptrox.min.js'}"></script>
+<script src="@{'public/javascripts/skel.min.js'}"></script>
+<script src="@{'public/javascripts/init.js'}"></script>
+<link rel="stylesheet" href="@{'public/stylesheets/skel.css'}" />
+<link rel="stylesheet" href="@{'public/stylesheets/style.css'}" />
+<!--[if lte IE 8]><link rel="stylesheet" href="@{'public/stylesheets/ie/v8.css'}" /><![endif]-->
+</head>
+<body bgcolor="black">
+	<section id="header" style="background-color: black; padding: 0;">
+		<header>
+			<div id="over">
+				<img src="@{'/public/images/logo.jpg'}" alt="JOVENS VORAZES - A ESPERANÇA" width="398px" />
+			</div>
+			<h1>ACAMPAMENTO JAC</h1>
+			<p>
+				<b>${registration.name}</b>, a sua inscrição foi realizada com sucesso.
+			</p>
+			<p></p>
+			<h2>Falta pouco!</h2>
+			<p>
+				Para efetivar sua inscrição, faça o depósito e <br> envie uma imagem do comprovante para <br> <span style="text-transform: lowercase"><b>inscricao@acampjc.com</b> ou por WhatsApp, (62) 99257-1859.</span>
+			</p>
+			<p></p>
+			<div id="printable">
+				<h2>Conta para depósito</h2>
+				<p>
+					<b>Banco:</b> CEF - Caixa Econômica Federal - Código: 104
+				</p>
+				<p>
+					<b>Operação:</b> 013 / <b>Agência:</b> 2262 / <b>Conta poupança:</b> 553187-2
+				</p>
+				<p>
+					<b>Instituição:</b> Igreja Batista Regular do Calvário
+				</p>
+				<p>
+					<b>CNPJ:</b> 24.857.385/0001-76 / <b>Valor:</b> R$ 120,00
+				</p>
+			</div>
+			<p>
+				<a href="JavaScript:openPopup('/imprimir');">Imprimir</a> | 
+				<a href="JavaScript:openPopup('/oquelevar');">O que levar</a> | 
+				<a href="JavaScript:openPopup('/importante');">Informações importantes</a> | 
+				<a href="@{Application.index()}">Voltar para a Home</a>
+			</p>
+		</header>
+	</section>
+	#{include 'includes/footer.html' /}
+</body>
+</html>

@@ -1,0 +1,38 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET    ${ctx}/                                      	Application.index
+POST   ${ctx}/					               			Application.saveRegistrationForm
+POST   ${ctx}/inscricao-realizada                    	Application.success
+GET    ${ctx}/inscricao                    				Application.registration
+POST   ${ctx}/sucesso                    				Application.success
+GET    ${ctx}/imprimir                    				Application.print
+GET    ${ctx}/oquelevar                    				Application.oQueLevar
+GET    ${ctx}/importante                    			Application.info
+GET    ${ctx}/mapa                  					Application.map
+
+# RegistrationCRUD routes
+GET		${ctx}/painel/inscricao							RegistrationCRUD.list
+GET		${ctx}/painel/inscricao/novo					RegistrationCRUD.blank
+GET		${ctx}/painel/inscricao/{id}					RegistrationCRUD.show
+GET		${ctx}/painel/inscricao/{id}/{field}			RegistrationCRUD.attachment
+GET		${ctx}/painel/inscricao/{id}/editar				RegistrationCRUD.edit
+POST	${ctx}/painel/inscricao							RegistrationCRUD.create
+POST	${ctx}/painel/inscricao/{id}						RegistrationCRUD.save
+DELETE	${ctx}/painel/inscricao/{id}					RegistrationCRUD.delete
+
+# Import CRUD routes
+*       ${ctx}/painel                      			module:crud
+
+# Import Secure routes
+*      	${ctx}/                            			module:secure
+# Ignore favicon requests
+GET     ${ctx}/favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     ${ctx}/public/                                staticDir:public
+
+# Catch all
+*       ${ctx}/{controller}/{action}                  {controller}.{action}
