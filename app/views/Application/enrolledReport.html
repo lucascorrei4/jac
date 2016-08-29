@@ -1,0 +1,58 @@
+<meta charset="utf-8">
+<style>
+body {
+	font-family: verdana, arial, sans-serif;
+	font-size: 12px;
+}
+
+th, td {
+	padding: 4px 4px 4px 4px;
+	text-align: center;
+}
+
+th {
+	border-bottom: 2px solid #333333;
+}
+
+td {
+	border-bottom: 1px dotted #999999;
+}
+
+tfoot td {
+	border-bottom-width: 0px;
+	border-top: 2px solid #333333;
+	padding-top: 20px;
+}
+</style>
+<input type="button" name="imprimir" value="Imprimir" onclick="window.print();">
+<table>
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Nome</th>
+			<th>Idade</th>
+			<th>RG</th>
+			<th>Dt. Nasc.</th>
+			<th>Cidade</th>
+			<th>Contatos</th>
+			<th>Responsável</th>
+			<th>Dados de saúde</th>
+			<th>The Voice</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list listEnrolled, as:'enrolled'}
+				<tr><td>${enrolled_index}</td>
+				<td style="text-align: left">${enrolled.getName() + ' ' + enrolled.getLastName()}</td>
+				<td>${enrolled.getAge()}</td>
+				<td style="text-align: left">${enrolled.getRG() == null ? '' : enrolled.getRG()} ${enrolled.getRGOrgan()  == null ? '' : enrolled.getRGOrgan()}</td>
+				<td>${enrolled.getBirthdate()}</td>
+				<td>${enrolled.getCityState()}</td>
+				<td style="text-align: left">${enrolled.getPhone1() + " " + enrolled.getPhone2() + ", " + enrolled.getEmail()}</td>
+				<td style="text-align: left">${enrolled.getResponsable() + " " + enrolled.getEmergencyCall()}</td>
+				<td style="text-align: left">${(enrolled.getAllergy() == null ? '' : "Alergia[" + enrolled.getAllergy() + "], ") + (enrolled.getMedicine() == null ? '' : "Toma remédio[" + enrolled.getMedicine() + "] ") + " " + (enrolled.isAsthma() ? 'Tem asma, ' : '') + (enrolled.isSleepwalk() ? 'É sonâmbulo, ' : '') + (enrolled.isHighPressure() ? 'Tem pressão alta, ' : '') + (enrolled.isLowPressure() ? 'Tem pressão baixa, ' : '') + (enrolled.isDiabetes() ? 'Tem diabetes, ' : '') +  (enrolled.isFainting() ? 'Desmaia, ' : '') + (enrolled.isSwim() ? 'Não sabe nadar, ' : '') + (enrolled.isHeadache() ? 'Tem enxaqueca' : '')}</td>
+				<td>${enrolled.getTheVoice() ? 'Sim' : 'Não'}</td>
+			</tr>
+		#{/list}
+	</tbody>
+</table>

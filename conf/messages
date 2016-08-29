@@ -1,7 +1,7 @@
 # Default CRUD messages
 # ~~~~~~
 
-crud.title=Administração - Acampamento JC3
+crud.title=Administração - Acampamento JAC
 crud.home=Início
 crud.blank=Novo
 crud.index.title=Administração
@@ -78,8 +78,10 @@ IntercessorsCRUD=Intercessores
 EventsCRUD=Eventos
 UsersCRUD=Usuário
 MembersCRUD=Membros
+RegistrationCRUD=Inscrições
 
 #Models
+Registration=Inscrição
 ContactForm=Mensagens - Form. Contato
 ContactInfo=Informações de contato
 EmailExclusiveOffer=E-mails/Ofertas exclusivas
@@ -99,6 +101,7 @@ Member=Membro
 Visitor=Visitante
 
 #Labels
+theVoice=The Voice Church
 name=Nome
 productCategory=Categoria
 imageSubCategory=Imagem
@@ -239,6 +242,6 @@ validation.msgGenderSelectMembers=Para enviar a todos os membros por um determin
 info.isActive.true=Habilita o ítem atual para ser utilizado pelo sistema.
 info.isActive.false=Informa ao sistema que ítem atual será descartado.
 
-project.name=Acampamento JC3!
+project.name=Acampamento JAC!
 project.link=http://twitter.com/lucascorrei4
 project.version=1.0 BETA

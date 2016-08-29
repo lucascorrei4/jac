@@ -1,0 +1,41 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+%{ctx = play.configuration.getProperty('apache.context', '')}%
+# Home page
+GET    ${ctx}/                                      	Application.index
+POST   ${ctx}/					               			Application.saveRegistrationForm
+POST   ${ctx}/inscricao-realizada                    	Application.success
+GET    ${ctx}/inscricao                    				Application.registration
+POST   ${ctx}/sucesso                    				Application.success
+GET    ${ctx}/imprimir                    				Application.print
+GET    ${ctx}/oquelevar                    				Application.oQueLevar
+GET    ${ctx}/importante                    			Application.info
+GET    ${ctx}/mapa                  					Application.map
+
+# RegistrationCRUD routes
+GET		${ctx}/admin/relatorio-acampantes				Application.enrolledReport
+GET		${ctx}/admin/inscricao							RegistrationCRUD.list
+GET		${ctx}/admin/inscricao/novo						RegistrationCRUD.blank
+GET		${ctx}/admin/inscricao/{id}						RegistrationCRUD.show
+GET		${ctx}/admin/inscricao/{id}/{field}				RegistrationCRUD.attachment
+GET		${ctx}/admin/inscricao/{id}/editar				RegistrationCRUD.edit
+POST	${ctx}/admin/inscricao							RegistrationCRUD.create
+POST	${ctx}/admin/inscricao/{id}						RegistrationCRUD.save
+DELETE	${ctx}/admin/inscricao/{id}						RegistrationCRUD.delete
+
+# Import CRUD routes
+*       ${ctx}/admin                      			module:crud
+
+
+# Import Secure routes
+*      	${ctx}/                            			module:secure
+
+# Ignore favicon requests
+GET     ${ctx}/favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     ${ctx}/public/                                staticDir:public
+
+# Catch all
+*       ${ctx}/{controller}/{action}                  {controller}.{action}
